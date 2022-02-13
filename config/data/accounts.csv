@@ -1,0 +1,5 @@
+# email, password, firstname, lastname
+#
+# All values might be overridden by property configured values
+# or filled with random data if left blank.
+#

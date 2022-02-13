@@ -1,0 +1,95 @@
+# This is the generic search phrases file.
+# If site specific search phrases are needed create an appropriate site enum
+# entry at "com.demandware.xlt.util.Site" if not already utilized by your
+# special search and also create a corresponding search phrases file with name
+# syntax: search-phrases_<ID>.txt
+#
+accessories
+apple
+blue
+bottoms
+bracelets
+camera
+canon
+cardigan
+clothing
+coats
+digital
+dress
+dresses
+earrings
+electronics
+gaming
+gloves
+gps
+ipod
+jackets
+jewelry
+lcd
+leg
+luggage
+men
+modern
+mp3
+navigation
+necklaces
+new
+outfits
+pants
+player
+playstation
+pocket
+red
+samsung
+scarves
+shirts
+shoes
+shorts
+silk
+sleeve
+sony
+suits
+sweater
+televisions
+ties
+top
+tops
+white
+women
+white dress
+black white
+black white dress
+floral dress
+Sleeveless Pleated
+blouse
+flat front
+classic pant
+ribbed skirt
+bermudas
+bermuda short
+pants classic
+trousers leg
+jeans classic
+shirts
+shirt
+blue shirt
+red shirt
+modern shirt
+bangle
+gold
+green blue bracelet
+worn gold
+Bracelet
+star wars
+madden
+nfl
+nascar
+games
+spanish coach
+grand theft auto
+grand theft
+mario kart
+kart mario
+bourne
+game console
+classic
