@@ -29,15 +29,15 @@
         <dependency>
             <groupId>com.xceptance</groupId>
             <artifactId>xlt</artifactId>
-            <version>5.7.1</version> <!-- XTC is running XLT 5.7 at the moment --> 
+            <version>6.1.0</version> <!-- XTC is running XLT 6.1.1 at the moment -->
 	    </dependency>
 
 		<dependency>
 			<groupId>com.codeborne</groupId>
 			<artifactId>selenide</artifactId>
-			<version>5.23.3</version> <!-- XLT 5.7.X is still Selenium 3, so wait for XLT 6 to use 6.X here too -->
+			<version>6.3.4</version>
 		</dependency>
-		
+
     </dependencies>
 
 
