@@ -19,23 +19,31 @@
     <Logger name="com.gargoylesoftware.htmlunit.DefaultCssErrorHandler" level="off" />
     <Logger name="com.gargoylesoftware.htmlunit.javascript.StrictErrorReporter" level="off" />
     <Logger name="com.gargoylesoftware.htmlunit.javascript.host.css.CSSRule" level="off" />
-    <Root level="debug">
+    <Root level="info">
       <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
     </Root>
-    <Logger name="runtime" level="debug" additivity="false">
+    <Logger name="runtime" level="info" additivity="false">
       <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
     </Logger>
     <Logger name="com.xceptance" level="info" additivity="false">
       <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
     </Logger>
     <Logger name="com.gargoylesoftware.htmlunit" level="warn" additivity="false">
       <AppenderRef ref="Console"/>
+      <AppenderRef ref="File"/>
     </Logger>
+    <!-- 
     <Logger name="org.apache.http" level="info" additivity="false">
       <AppenderRef ref="Console"/>
     </Logger>
+     -->
+    <!--
     <Logger name="org.apache.http.wire" level="error" additivity="false">
       <AppenderRef ref="Console"/>
     </Logger>
+     -->
   </Loggers>
 </Configuration>
