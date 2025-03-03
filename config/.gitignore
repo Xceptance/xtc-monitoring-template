@@ -2,8 +2,5 @@
 /classes/
 /target/
 .idea/
-SiteGenesis.iml
+.settings/
 .classpath
-.settings
-.project
-/bin/
