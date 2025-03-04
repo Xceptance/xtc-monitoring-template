@@ -1,6 +1,78 @@
 # XTC Monitoring Template
 A base monitoring demo and template for XTC based synthetic monitoring.
 
+# Steps to utilize template
+
+## Adjusting properties in project.properties file
+
+1. Adjust location mapping to you needs:
+
+```
+xlt.site.europe-west3 = <site1>
+xlt.site.europe-west2 = <site2>
+xlt.site.us-west3 = <site3>
+xlt.site.us-west1 = <site4>
+```
+2. Replace start (`xlt.startUrl.<site>`) urls in project.properties
+3. If site is protected with basic authentication, paste the credentials to the following properties:
+
+```
+com.xceptance.xlt.auth.userName
+com.xceptance.xlt.auth.password 
+```
+4. Enter host, port and fingerprint of the site certificate in the following properties:
+
+```
+xlt.certificate.host
+xlt.certificate.port
+xlt.certificate.fingerprint
+```
+
+Tip: if you don't know the fingerprint for your site, just run the `TServerCertificate` test once and you will see the current fingerprint in the error message
+
+5. Adjust search terms via `xlt.de.searchTerms` property
+
+## Adjusting credentials for order monitoring in ocapi.properties
+
+1. Fill out the following properties:
+
+```
+host
+clientId
+clientPassword
+orginUrl
+```
+
+* Origin URL is the URL from which the OCAPI calls are expected (otherwise, they will be rejected). Usually it matches the pattern `https://<host>/`
+
+* For clientId and clientPassword ask your SFCC Admin to generate ones for you. It's required for the credentials to have at least the following permission:
+
+```     
+        {
+          "resource_id": "/order_search",
+          "methods": [
+            "post"
+          ],
+          "read_attributes": "(count, start, total, next.(**), hits.(data.(order_no, status,creation_date,confirmation_status,export_status,customer_info.(email),billing_address.(country_code),payment_instruments.(c_adyenPaymentMethod,payment_method_id,c_paymentType))))",
+          "write_attributes": "(**)"
+        }
+```
+## Adjusting order monitoring scenario metrics in order-schedule.properties
+
+The template already has most common order monitoring scenarios pre-configured. Feel free to remove ones you don't need for the project. For the scenarios you need, update the following properties:
+1. `consideredPeriod` - time in minutes within which the condition is expected to be met
+2. `site` - Business Manager site for which the condition should be checked
+3. `locale` - country code of the billing address of the orders (used to distinguish among different locales on the same BM site)
+4. `timezone` - time zone used in BM for the site *Important: although OCAPI works with UTC, the orders in BM have time zone location, therefore order monitoring schedules expect time table to be localized by the BM time zone*
+5. `maximalOrderPercentageWithFeature`, `maximalOrderAmount`, `minimalOrderAmount` properties should be adjusted according to your expectations based on business statistics 
+
+## Adjusting tests and page objects
+
+Adjust existing page-objects to match structure of target site. Feel free to change test flow, if the site requires it.
+
+Use existing tests as reference and extend the project with test for further scenarios, e.g. for guest and registered checkout
+
+
 # Project structure
 
 Project contains four basic test types:
@@ -90,22 +162,4 @@ Alerts in case of verification of multiple criterion per test:
 
 → single alert informing you that:  percentage of new orders with PayPal and expected number of new orders are not reached and percentage of failed order is more than expected → gives better overview of what could be the reason for not reached expectations
 
-
-# Steps to utilize template
-
-## Adjusting properties in project.properties file
-
-1. Adjust location mapping to you needs:
-```
-xlt.site.europe-west3 = <site1>
-xlt.site.europe-west2 = <site2>
-xlt.site.us-west3 = <site3>
-xlt.site.us-west1 = <site4>
-```
-2. Replace start (`xlt.startUrl.<site>`) urls in project.properties
-3. If site is protected with basic authentication, enter the credentials here:
-```
-com.xceptance.xlt.auth.userName
-com.xceptance.xlt.auth.password 
-```
 
