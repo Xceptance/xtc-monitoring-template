@@ -38,7 +38,7 @@ com.xceptance.xlt.auth.password
 
 1. Adjust existing page-objects to match the structure of the target site. Feel free to change scenario flow, if the site requires it. The page-objects can be found in the package `company.pages`.
 2. Adjust search terms via `xlt.de.searchTerms` property
-3. Use existing scenarios as reference and extend the project with further scenarios, e.g. for guest and registered checkout
+3. Use existing scenarios as reference and extend the project with further scenarios, e.g. for guest and registered checkout (avoid placing orders and creating accounts on production instances, if it's not explicitly required)
 
 
 ### Server Certificate Check
