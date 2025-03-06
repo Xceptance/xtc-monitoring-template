@@ -56,6 +56,8 @@ Tip: if you don't know the fingerprint for your site, just run the `ServerCertif
 
 ### Order Monitoring
 
+See more extensive documentation [here](OrderMonitoringPropertiesDocumentation.md)
+
 In the `config/ocapi.properties` fill out the following properties:
 
 ```
