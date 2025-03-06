@@ -92,8 +92,6 @@ The template already has most common order monitoring scenarios pre-configured. 
 
 # Scenario Details
 
-Project contains four basic scenario types:
-
 ## Browser-less test: `Ping`
 
 After warm up runs a simple interaction that is not using a full browser to avoid that piece of the stack. This scenario will only pull the initial HTML from the server, to see is the server is healthy and responding as fast as expected.
