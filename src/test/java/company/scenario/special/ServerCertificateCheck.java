@@ -1,4 +1,4 @@
-package company.tests;
+package company.scenario.special;
 
 
 import static org.junit.Assert.fail;
@@ -44,7 +44,7 @@ import com.xceptance.xlt.engine.SessionImpl;
  * <li>xlt.certificate.numberOfDaysBeforeExpiration - Days to check for certificate validity (defaults to 30)</li>
  * </ul>
  */
-public class TServerCertificate extends com.xceptance.xlt.api.tests.AbstractTestCase
+public class ServerCertificateCheck extends com.xceptance.xlt.api.tests.AbstractTestCase
 {
     @Test
     public void test() throws Exception

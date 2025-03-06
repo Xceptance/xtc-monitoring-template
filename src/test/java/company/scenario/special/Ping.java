@@ -1,4 +1,4 @@
-package company.tests;
+package company.scenario.special;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import company.util.WarmUpFlow;
  * This test will only pull the initial HTML from the server, to see is the server is healthy and responding as fast as
  * expected.
  */
-public class TPing extends AbstractTestCase
+public class Ping extends AbstractTestCase
 {
 
     @Test

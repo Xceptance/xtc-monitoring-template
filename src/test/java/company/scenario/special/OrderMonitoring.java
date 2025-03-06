@@ -1,4 +1,4 @@
-package company.tests;
+package company.scenario.special;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -12,7 +12,7 @@ import com.xceptance.ordermonitoring.model.configuration.PropertiesHelper;
 import com.xceptance.ordermonitoring.model.configuration.dataobject.TimeBasedRequirement;
 import com.xceptance.xlt.api.tests.AbstractTestCase;
 
-public class OrderMonitoringTest extends AbstractTestCase
+public class OrderMonitoring extends AbstractTestCase
 {
     @Test
     public void test()

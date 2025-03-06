@@ -1,4 +1,4 @@
-package company.tests;
+package company.scenario.browsing;
 
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ import company.util.WarmUpFlow;
  * {@code TestdataHelper#getStartUrl()}) after browser warm up. Does a small check that expected page is open and
  * measures the performance
  */
-public class THomepage extends AbstractBrowserTest
+public class Homepage extends AbstractBrowserScenario
 {
     @Test
     public void test()

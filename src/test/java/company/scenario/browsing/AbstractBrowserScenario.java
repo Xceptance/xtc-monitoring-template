@@ -1,4 +1,4 @@
-package company.tests;
+package company.scenario.browsing;
 
 import org.junit.Before;
 
@@ -7,7 +7,7 @@ import com.xceptance.xlt.api.engine.scripting.AbstractWebDriverScriptTestCase;
 import com.xceptance.xlt.engine.scripting.TestContext;
 import com.xceptance.xlt.engine.scripting.webdriver.WebDriverScriptCommands;
 
-public abstract class AbstractBrowserTest extends AbstractWebDriverScriptTestCase
+public abstract class AbstractBrowserScenario extends AbstractWebDriverScriptTestCase
 {
     @Before
     public void initSelenideDriver()

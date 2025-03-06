@@ -1,4 +1,4 @@
-package company.tests;
+package company.scenario.browsing;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +16,7 @@ import company.util.WarmUpFlow;
  * If the search term is not found due to a product being temporarily out of this we take the fall-back search phrases
  * and try try the next until 'xlt.<site>.minResultsCount' results is/are found
  */
-public class TSearch extends AbstractBrowserTest
+public class Search extends AbstractBrowserScenario
 {
     @Test
     public void test()
