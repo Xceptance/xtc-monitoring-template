@@ -11,7 +11,8 @@ import company.util.TestdataHelper;
 import company.util.WarmUpFlow;
 
 /**
- * After warm up runs a simple interaction that is not using a full browser to avoid that piece of the stack. </br>
+ * A simple ping, allowing a basic server health check. After warm up runs a simple interaction that is not using a full
+ * browser to avoid that piece of the stack. </br>
  * This test will only pull the initial HTML from the server, to see is the server is healthy and responding as fast as
  * expected.
  */
