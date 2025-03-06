@@ -1,10 +1,10 @@
 # Order Monitoring Properties Documentation
 
-##Site
+## Site
 
 `<condition_label>.site`
 
-Order monitoring is site-specific. It makes sense because most of the sites have different payment methods and might also have different order statistics (e.g. visitors of your german site tend to order more than visitors of your polish site)
+Order monitoring is site-specific. It makes sense because most of the sites have different payment methods and might also have different order statistics (e.g. visitors of your German site tend to order more than visitors of your Polish site)
 
 Please, keep in mind that all the statistics will be validated for the specified site only and based on site-specific time
 
@@ -20,13 +20,13 @@ Country code of the billing address of the orders (used to distinguish among dif
 
 Time zone used in BM for the site
 
-**Important: although OCAPI works with UTC, the orders in BM have time zone location, therefore order monitoring schedules expect time table to be localized by the BM time zone**
+**Important: although OCAPI works with UTC, the orders in BM have time zone location, therefore order monitoring schedules expect timetable to be localized by the BM time zone**
 
 ## Order Status Property
 
 `<condition_label>.order statuses`
 
-Multiple values are supported. It depends on the implementation of the order processing but these are the main default order statuses available (there can be more if more are implemented)
+Multiple values are supported. It depends on the implementation of the order processing, but these are the main default order statuses available (there can be more if more are implemented)
 
 `created` - order was created in the system but is not yet placed (e.g. because it has not been paid yet)
 `new` - order is placed successfully and shipping and invoice numbers are generated
@@ -118,7 +118,7 @@ Here are the most common payment methods and common values for them. Depending o
 
 `<condition_label>.consideredPeriod` - time in minutes within which the expected range of number/ percentage of orders with expected status and/or payment method should be kept.
 
-The considered period doesn't have to match the execution interval of the check. Moreover, it's recommended that it be bigger than the execution interval. This allows us to smooth out the peaks and verify the statistics for the last e.g. 3 hours every hour, getting information about the last hour but also averaging it with the statistics for the previous 2 hours. This approach gives more flexibility in checks as we don't know the exact hour of order peak for every day. Besides that, it enables monitoring to catch the trend of order numbers getting up or down, instead of single measurements for specific points in time
+The considered period doesn't have to match the execution interval of the check. Moreover, it's recommended that it be bigger than the execution interval. This allows us to smooth out the peaks and verify the statistics for the last e.g. 3 hours every hour, getting information about the last hour but also averaging it with the statistics for the previous 2 hours. This approach gives more flexibility in checks, as we don't know the exact hour of order peak for every day. Besides that, it enables monitoring to catch the trend of order numbers getting up or down, instead of single measurements for specific points in time
 
 ## Custom assertion
 
@@ -140,7 +140,7 @@ no_orders_with_invalid_email.customCondition.validEmailCondition.pattern = ^(?![
 
 `<condition_label>.pathToUniqueAttribute`
 
-Sometimes it's required to consider multiple orders as one based on the matching OCAPI JSON property values. For example, it might be useful to filter out multiple failed orders made by the same user to suppress notifications as the issue is most probably on the user side. 
+Sometimes it's required to consider multiple orders as one based on the matching OCAPI JSON property values. For example, it might be useful to filter out multiple failed orders made by the same user to suppress notifications, as the issue is most probably on the user side. 
 
 ### Example:
 
@@ -151,7 +151,7 @@ Sometimes it's required to consider multiple orders as one based on the matching
 
 `<condition_label>.maxTotalOrderNumberToIgnoreConditon`
 
-Sometimes, if there are too few orders, it's hard to make a valid statement. For example, if there are only 2 orders and one of them failed, it gives you high failure rate but it's actually hard to say, if there is any problem. In these case, you can make monitoring skip the assertion if order number is not reached.
+Sometimes, if there are too few orders, it's hard to make a valid statement. For example, if there are only 2 orders and one of them failed, it gives you high failure rate, but it's actually hard to say, if there is any problem. In these case, you can make monitoring skip the assertion if order number is not reached.
 
 ### Example:
 
@@ -163,7 +163,7 @@ This configuration is a good point to start to always have a fallback for expect
 
 ### Examples:
 
- order failure percentage should never be more than n% per t minutes, otherwise, we might have an issue with the order proccess
+ order failure percentage should never be more than n% per t minutes, otherwise, we might have an issue with the order process
  it's never expected to have more than m new orders within t minutes, otherwise we might have a bot attack
 Properties
 
@@ -175,11 +175,11 @@ Properties
 ```
 ## Schedules of expected metrics
 
-It's natural that depending on the business model, there might be more orders placed during certain hours and/or days than during others. To verify that peaks of user activity match your expectations you can create and overwrite schedules.
+It's natural that, depending on the business model, there might be more orders placed during certain hours and/or days than during others. To verify that peaks of user activity match your expectations, you can create and overwrite schedules.
 
 ### Everyday schedules
 
-It's logical to start with a schedule for every day and than complement it with details for the day of the week or exclusion period. You can create a schedule using the following property:
+It's logical to start with a schedule for every day and then complement it with details for the day of the week or exclusion period. You can create a schedule using the following property:
 
 `<condition_label>.everyday.<time frame>.<metric property: minimalOrderAmount, maximalOrderAmount, minimalOrderPercentageWithFeature, maximalOrderPercentageWithFeature>`
 
@@ -200,7 +200,7 @@ minimal_order_number_in_180_minutes.everyday.22-00-00_23-59-59.minimalOrderAmoun
 ```
 
 ## Day of the week schedules
-As mentioned before, it may be required to specify special values for different days of the week, e.g. it's expected that on Sunday users place less orders than on other days of the week. To adjust the monitored values to this you can use the following property:
+As mentioned before, it may be required to specify special values for different days of the week, e.g. it's expected that on Sunday users place less orders than on other days of the week. To adjust the monitored values to this, you can use the following property:
 
 `<condition_label>.<day of the week>.<time frame>.<metric property: minimalOrderAmount, maximalOrderAmount, minimalOrderPercentageWithFeature, maximalOrderPercentageWithFeature>`
 
@@ -223,7 +223,7 @@ It's expected that order statistics can depend on time period, e.g. on holidays 
 
 
 
-To verify that the statistics match your expectations first define an exclusive period time with properties
+To verify that the statistics match your expectations, first define an exclusive period of time with properties
 
 ```
 <condition_label>.exclusivePeriod.<name of the period>.from 

@@ -1,7 +1,7 @@
 # XTC Monitoring Template
 A base monitoring demo and template for XTC based synthetic monitoring. 
 
-This repository can be used as a starting point for a website montitoring. It contains four base scenarios:
+This repository can be used as a starting point for a website monitoring. It contains four base scenarios:
 
 - Ping - A simple server ping to check the server health
 - Homepage - A real browser based Homepage visit, allowing to check if the homepage is stable and fast with all connected 3rd parties
@@ -36,7 +36,7 @@ com.xceptance.xlt.auth.password
 
 ### Browsing Scenarios
 
-1. Adjust existing page-objects to match structure of target site. Feel free to change scenario flow, if the site requires it. The page-objects can be found in the package `company.pages`.
+1. Adjust existing page-objects to match the structure of the target site. Feel free to change scenario flow, if the site requires it. The page-objects can be found in the package `company.pages`.
 2. Adjust search terms via `xlt.de.searchTerms` property
 3. Use existing scenarios as reference and extend the project with further scenarios, e.g. for guest and registered checkout
 
@@ -88,7 +88,7 @@ The template already has most common order monitoring scenarios pre-configured. 
   1. `consideredPeriod` - time in minutes within which the condition is expected to be met
   2. `site` - Business Manager site for which the condition should be checked
   3. `locale` - country code of the billing address of the orders (used to distinguish among different locales on the same BM site)
-  4. `timezone` - time zone used in BM for the site *Important: although OCAPI works with UTC, the orders in BM have time zone location, therefore order monitoring schedules expect time table to be localized by the BM time zone*
+  4. `timezone` - time zone used in BM for the site *Important: although OCAPI works with UTC, the orders in BM have time zone location, therefore order monitoring schedules expect timetable to be localized by the BM time zone*
   5. `maximalOrderPercentageWithFeature`, `maximalOrderAmount`, `minimalOrderAmount` properties should be adjusted according to your expectations based on business statistics 
 
 
@@ -96,24 +96,24 @@ The template already has most common order monitoring scenarios pre-configured. 
 
 ## Browser-less test: `Ping`
 
-After warm up runs a simple interaction that is not using a full browser to avoid that piece of the stack. This scenario will only pull the initial HTML from the server, to see is the server is healthy and responding as fast as expected.
+After warm up, runs a simple interaction that is not using a full browser to avoid that piece of the stack. This scenario will only pull the initial HTML from the server, to see is the server is healthy and responding as fast as expected.
 
-This scenario uses HTMLUnit to send request to the homepage, verifies that the response has status code 200 and measures the time it took for server to deliver the response.
+This scenario uses HTMLUnit to send a request to the homepage, verifies that the response has status code 200 and measures the time it took for the server to deliver the response.
 
 ## Browsing Scenarios: `Homepage`, `Search`
 
-These tests act like a real user, opening pages in browser and interacting with them, measuring the performance in background. To keep the code for these scenarios structured, it's recommended to use page object pattern, creating classes for visited pages in `pages` package. The page-object classes should store encapsulated selectors for the page element and public method to interact with the page. Don't hesitate to use inheritance to reuse code mutual for multiple page-objects. Implementing `validate` method and calling it every time opening the page will help to ensure the monitoring lands on the correct page, that every expected part of the page is displayed and prevents unexpected actions to be done during monitoring.
+These tests act like a real user, opening pages in a browser and interacting with them, measuring the performance in background. To keep the code for these scenarios structured, it's recommended to use the page object pattern, creating classes for visited pages in `pages` package. The page-object classes should store encapsulated selectors for the page element and public method to interact with the page. Don't hesitate to use inheritance to reuse code mutual for multiple page-objects. Implementing `validate` method and calling it every time opening the page will help to ensure the monitoring lands on the correct page, that every expected part of the page is displayed and prevents unexpected actions to be done during monitoring.
 
 ### Test data
 
-A lot of scenarios need to be fed with test data. Usually test data differs depending on the location, so to have the test data always localized, use `TestdataHelper.getLocalizedTestdata()` method to get it by the key (see example in `Search` scenario).
+A lot of scenarios need to be fed with test data. Usually test data differs depending on the location, so to have the test data always localized, use `TestdataHelper.getLocalizedTestdata()` a method to get it by the key (see example in `Search` scenario).
 
-Sometimes it's also useful to have fallbacks for some test data, like, e.g. for search terms or SKUs, to make monitoring more robust to data changes on the site. In this template you can see an example of fallback implementation in the `Seach` scenario. Feel free to reuse the concept in other scenarios if needed.
+Sometimes it's also useful to have fallbacks for some test data, like, e.g. for search terms or SKUs, to make monitoring more robust to data changes on the site. In this template, you can see an example of fallback implementation in the `Seach` scenario. Feel free to reuse the concept in other scenarios if needed.
 
 
 ## Certificate Check: `ServerCertificateCheck`
 
-Scenario for validating SSL/TLS server certificates. This class performs several certificate validation checks including:
+Scenario for validating SSL/TLS server certificates. This class performs several certificate validation checks, including:
  * Certificate retrieval from a specified host and port
  * Current validity verification
  * Certificate fingerprint validation
@@ -121,9 +121,9 @@ Scenario for validating SSL/TLS server certificates. This class performs several
  
 ## Order monitoring: `OrderMonitoring`
 
-Order monitoring allows to verify percentage and/or number of orders with a specific status(es) and or specific payment method(es) on a site per specific period within a defined range.
+Order monitoring allows verifying percentage and/or number of orders with a specific status(es) and or specific payment method(es) on a site per specific period within a defined range.
 
-Note: This is only useable by SFCC customers, since it is constructed for this kind of page using the OCAPI backend from SFCC shops. If you need something similar for a different type of shop or backend please [contact us](mailto:contact@xceptance.com).
+Note: This is only usable by SFCC customers, since it is constructed for this kind of page using the OCAPI backend from SFCC shops. If you need something similar for a different type of shop or backend, please [contact us](mailto:contact@xceptance.com).
 
 ### Example Cases:
 
@@ -135,7 +135,7 @@ Example:
 
 No more than 30% of orders made within the last hour have status failed. To filter out single user trying to place an order multiple times and producing a lot of failed orders, it's recommended to set `pathToUniqueAttribute` property to `$..data.customer_info.email;$..data.status`. This will make order monitoring filter out duplicates and count multiple failed orders from single user as one order.
 
-If number of orders is too low, even one failed order can cause failed orders rate to be higher than expected. At the same time, it's hard to say, if the failed order is caused by a problem on the site. In this case, `maxTotalOrderNumberToIgnoreConditon` property can be useful. It allows to skip the assertion if number of order during the defined period is lower than needed to make any conclusion.
+If number of orders is too low, even one failed order can cause failed orders rate to be higher than expected. At the same time, it's hard to say, if the failed order is caused by a problem on the site. In this case, `maxTotalOrderNumberToIgnoreConditon` property can be useful. It allows skipping the assertion if number of order during the defined period is lower than needed to make any conclusion.
 
 Example condition: `maximum_failed_orders_per_hour`
 
@@ -156,7 +156,7 @@ Example: There are from 3 to 3000 newly placed orders (with status new or open) 
 
 Example condition: `minimal_order_number`
 
-#### Valid values transfered to order system
+#### Valid values transferred to order system
 
 Ensures orders with invalid values are not coming through
 
@@ -166,7 +166,7 @@ Example condition: `no_orders_with_invalid_email`
 
 ### Condition combination
 
-It's possible to make single scenario run to validate multiple conditions at once to reduce number of calls and to reduce number of alerts in case of depending conditions.
+It's possible to make single scenario run to validate multiple conditions at once to reduce number of calls and to reduce number of alerts in case of depending on conditions.
 
 #### Example Situation:
 
