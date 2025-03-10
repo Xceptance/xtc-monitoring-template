@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.xceptance.xlt.api.engine.Session;
+
 import company.util.OpenPageFlow;
 import company.util.TestdataHelper;
 import company.util.WarmUpFlow;
@@ -31,9 +33,11 @@ public class Search extends AbstractBrowserScenario
 
         // perform a search
         boolean resultsFound = false;
-        for (String searchTerm : searchTerms)
+        for (int i = 0; i < searchTerms.size(); i++)
         {
+            String searchTerm = searchTerms.get(i);
             var searchResultsPage = homepage.searchFor(searchTerm);
+            Session.getCurrent().getValueLog().put("Search term used " + i, searchTerm);
             if (searchResultsPage.hasMinResults(Optional.ofNullable(TestdataHelper.getLocalizedTestdata("minResultsCount")).orElse("1")))
             {
                 resultsFound = true;

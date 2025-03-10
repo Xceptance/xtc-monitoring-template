@@ -33,7 +33,8 @@ public class AbstractCatalogPage
      */
     public SearchResultsPage searchFor(String searchTerm)
     {
-        startAction("Search for " + searchTerm);
+
+        startAction("Search for a term");
         // validate search input field is visible (typing produces no error if input field is hidden)
         $(searchFieldSelector).shouldBe(visible);
 
@@ -45,7 +46,6 @@ public class AbstractCatalogPage
 
         // click the link to search, this is a page load
         $(searchButtonSelector).click();
-
         stopAction();
         return new SearchResultsPage();
     }
