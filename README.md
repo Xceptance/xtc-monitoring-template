@@ -78,8 +78,7 @@ orginUrl
   "methods": [
     "post"
   ],
-  "read_attributes": "(count, start, total, next.(**), hits.(data.(order_no, status,creation_date,confirmation_status,export_status,customer_info.(email),billing_address.(country_code),payment_instruments.(c_adyenPaymentMethod,payment_method_id,c_paymentType))))",
-  "write_attributes": "(**)"
+  "read_attributes": "(count, start, total, next.(**), hits.(data.(order_no, status,creation_date,confirmation_status,export_status,customer_info.(email),billing_address.(country_code),payment_instruments.(c_adyenPaymentMethod,payment_method_id,c_paymentType))))"
 }
 ```
 
