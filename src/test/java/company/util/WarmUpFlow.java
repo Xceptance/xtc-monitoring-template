@@ -86,6 +86,6 @@ public class WarmUpFlow
 
     private static String getWarmupUrl()
     {
-        return XltProperties.getInstance().getProperty("xlt.warmup.url", "https://www.google.com/");
+        return XltProperties.getInstance().getProperty("xlt.warmup.url", "https://www.xceptance.com/en/resources/monitoring.html");
     }
 }
