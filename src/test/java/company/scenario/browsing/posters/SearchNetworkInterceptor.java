@@ -1,8 +1,6 @@
-package company.scenario.browsing;
+package company.scenario.browsing.posters;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.xceptance.xlt.api.engine.scripting.StaticScriptCommands.startAction;
-import static com.xceptance.xlt.api.engine.scripting.StaticScriptCommands.stopAction;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,17 +10,17 @@ import org.junit.Test;
 
 import com.xceptance.xlt.api.engine.Session;
 
+import company.scenario.browsing.AbstractBrowserScenarioNetworkInterceptor;
 import company.util.OpenPageFlow;
 import company.util.TestdataHelper;
 import company.util.WarmUpFlow;
 
 /**
- * After browser warm up this test uses the search feature and searches for a phrase of 'xlt.<site>.searchTerms' to get
- * 'xlt.<site>.minResultsCount'. </br>
- * If the search term is not found due to a product being temporarily out of this we take the fall-back search phrases
- * and try try the next until 'xlt.<site>.minResultsCount' results is/are found
+ * After browser warm up this test uses the search feature and searches for a phrase of 'xlt.<site>.searchTerms' to get 'xlt.<site>.minResultsCount'. </br> If
+ * the search term is not found due to a product being temporarily out of this we take the fall-back search phrases and try try the next until
+ * 'xlt.<site>.minResultsCount' results is/are found
  */
-public class Search extends AbstractBrowserScenarioWithTrace
+public class SearchNetworkInterceptor extends AbstractBrowserScenarioNetworkInterceptor
 {
     @Test
     public void test()
@@ -49,7 +47,6 @@ public class Search extends AbstractBrowserScenarioWithTrace
             }
         }
         Assert.assertTrue("None of search terms " + searchTerms + " had results", resultsFound);
-
 
         startAction("Click on first product");
         $(".card-body a").click();

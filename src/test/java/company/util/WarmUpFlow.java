@@ -1,5 +1,6 @@
 package company.util;
 
+import com.codeborne.selenide.Selenide;
 import com.xceptance.xlt.api.engine.ActionData;
 import com.xceptance.xlt.api.engine.Session;
 import com.xceptance.xlt.api.util.XltProperties;
@@ -66,25 +67,29 @@ public class WarmUpFlow
             // don't log this
             Session.getCurrent().getDataManager().setLoggingEnabled(false);
             startAction("Warmup");
-            open(getWarmupUrl());
-            pause(2000);
+            //open(getWarmupUrl());
+            Selenide.open(getWarmupUrl());
+            //pause(2000);
+            Selenide.sleep(2000);
             stopAction();
         }
         finally
         {
             // trigger a before-unload event causing the browser to send client-performance data now while we still have
             // data logging disabled
-            ((WebDriverScriptCommands) TestContext.getCurrent().getAdapter()).getUnderlyingWebDriver().get("about:blank");
+            //((WebDriverScriptCommands) TestContext.getCurrent().getAdapter()).getUnderlyingWebDriver().get("about:blank");
+            Selenide.open("about:blank");
 
             // wait some time for client-performance data to arrive
-            pause(2000);
+            //pause(2000);
+            Selenide.sleep(2000);
 
             // bring back logging
             Session.getCurrent().getDataManager().setLoggingEnabled(true);
         }
     }
 
-    private static String getWarmupUrl()
+    public static String getWarmupUrl()
     {
         return XltProperties.getInstance().getProperty("xlt.warmup.url", "https://www.xceptance.com/en/resources/monitoring.html");
     }

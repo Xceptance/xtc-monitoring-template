@@ -1,0 +1,38 @@
+package company.scenario.browsing;
+
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
+
+import org.junit.Test;
+
+import com.codeborne.selenide.Selenide;
+import com.xceptance.xlt.api.engine.scripting.AbstractWebDriverScriptTestCase;
+
+import company.util.trace.TraceContext;
+
+public class ProxyVerificationTest extends AbstractBrowserScenarioWithTrace
+{
+    @Test
+    public void verifyHeadersAreInjected()
+    {
+        // This endpoint returns a JSON payload of all headers it received
+        Selenide.open("https://httpbin.org/headers");
+
+        // Grab the raw text of the page (which will be JSON)
+        String pageSource = $("body").getText();
+
+        // Print it to your console to visually inspect it
+        System.out.println("Headers received by server:\n" + pageSource);
+
+        // Assert that the proxy successfully intercepted and injected the W3C/Datadog headers
+        // Note: HTTP headers are often converted to Title-Case or lowercase by servers
+        $("body").shouldHave(text("traceparent"));
+
+        // If testing Datadog:
+        $("body").shouldHave(text("X-Datadog-Trace-Id"));
+
+        // Assert that the dynamically generated ID actually made it through
+        $("body").shouldHave(text(TraceContext.getW3cTraceparent()));
+    }
+}
